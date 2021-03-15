@@ -17,6 +17,7 @@ import ProductDetails from './components/ProductDetails/ProductDetails';
 import Login from './components/Login/Login';
 //import { AuthContextProvider, PrivateRoute } from './components/Login/useAuth';
 import Shipment from './components/Shipment/Shipment';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext();
 
@@ -40,18 +41,18 @@ function App() {
             <Route path="/review">
               <Review></Review>
             </Route>
-            <Route path="/manage">
+            <PrivateRoute path="/manage">
               <Manage></Manage>
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
               <Login></Login>
             </Route>
             <Route path="/product/:productKey">
               <ProductDetails></ProductDetails>
             </Route>
-            {/* <PrivateRoute path="/shipment"> */}
+            <PrivateRoute path="/shipment">
               <Shipment></Shipment>
-            {/* </PrivateRoute> */}
+            </PrivateRoute>
             <Route path="*">
               <NotFound></NotFound>
             </Route>

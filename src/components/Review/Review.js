@@ -35,18 +35,25 @@ const Review = () => {
 
         const productKeys = Object.keys(savedCart);
 
-        const cartProducts = productKeys.map(key => {
-            const product = fakeData.find(pd => pd.key === key);
+        fetch('http://localhost:5000/productsByKeys',{
+            method:"POST",
+            headers:{
+                "Content-Type" : "application/json"
+            },
+            body:JSON.stringify(productKeys)
 
-            product.quantity = savedCart[key];
-
-            return product;
         })
+        .then( res => res.json() )
+        .then( data => setCart(data) );
 
-        // console.log(productKeys);
-        setCart(cartProducts);
-        console.log(cartProducts)
-        //console.log(savedCart);
+        // const cartProducts = productKeys.map(key => {
+        //     const product = fakeData.find(pd => pd.key === key);
+
+        //     product.quantity = savedCart[key];
+
+        //     return product;
+        // })
+        // setCart(cartProducts);
     }, [])
     let thankYou;
 

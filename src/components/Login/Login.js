@@ -49,10 +49,17 @@ function Login() {
   }
 
   const signOut = () => {
-    handleSignOut
-      .then(res => {
-        handelResponse(res, false);
-      })
+    handleSignOut();
+    const signedOutUser = {
+      isSignedIn: false,
+      name: '',
+      email: '',
+      photo: '',
+      error: '',
+      success: false
+  }
+  handelResponse(signedOutUser, false)
+  console.log("logged out successfully")
   }
 
   const handelBlur = (e) => {
@@ -106,14 +113,15 @@ function Login() {
   return (
     <div className="App">
     
-      { user.isSignedIn ? <button onClick={signOut}>Sign Out</button> :
+      <button onClick={googleSignIn}>Sign In</button>
+      {/* { user.isSignedIn ? <button onClick={signOut}>Sign Out</button> :
         <button onClick={googleSignIn}>Sign In</button>
-      }
+      } */}
       
       <br />
-      { user.isSignedIn ? <button onClick={signOut}>Sign Out</button> :
+      {/* { user.isSignedIn ? <button onClick={signOut}>Sign Out</button> :
         <button onClick={fbSignIn}>Sign in using Facebook</button>
-      }
+      } */}
       {/* {
         user.isSignedIn && <div>
           <p>Welcome, {user.name}!</p>
@@ -138,8 +146,8 @@ function Login() {
         <br />
         <input type="submit" value={newUser ? 'Sign up' : 'Sign in'} />
       </form>
-       <p style={{ color: 'red' }}>{user.error}</p> 
-       {user.success && <p style={{ color: 'green' }}>User {newUser ? 'Created' : 'Logged in'} Successfully</p>}
+       {/* <p style={{ color: 'red' }}>{user.error}</p>  */}
+       {/* {user.success && <p style={{ color: 'green' }}>User {newUser ? 'Created' : 'Logged in'} Successfully</p>} */}
     </div>
   );
 }
